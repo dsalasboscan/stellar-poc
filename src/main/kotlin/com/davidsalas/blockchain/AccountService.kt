@@ -2,6 +2,7 @@ package com.davidsalas.blockchain
 
 import com.davidsalas.blockchain.common.Constants.STELLAR_BOT_URL
 import com.fasterxml.jackson.annotation.JsonInclude
+import io.swagger.annotations.ApiOperation
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -77,9 +78,11 @@ class AccountService(val server: Server, val accountRepository: AccountRepositor
 class AccountController(val accountService: AccountService) {
 
     @PostMapping("/create")
+    @ApiOperation(value = "Create issuing or no issuing account")
     fun create(@RequestBody request: CreateAccountRequest) = accountService.create(request)
 
     @GetMapping("/{email}/balance")
+    @ApiOperation(value = "Get balance of account")
     fun getBalance(@PathVariable("email") email: String) = accountService.getBalance(email)
 }
 

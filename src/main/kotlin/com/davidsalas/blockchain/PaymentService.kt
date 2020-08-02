@@ -1,5 +1,6 @@
 package com.davidsalas.blockchain
 
+import io.swagger.annotations.ApiOperation
 import org.springframework.retry.support.RetryTemplate
 import org.springframework.stereotype.Service
 import org.springframework.web.bind.annotation.PostMapping
@@ -90,6 +91,7 @@ class PaymentService(
 class PaymentController(val paymentService: PaymentService) {
 
     @PostMapping("/payment/send-asset")
+    @ApiOperation(value = "Send asset to Internal users (by email) or to External users (by stellar accountId)")
     fun sendPayment(@RequestBody request: PaymentRequest) = paymentService.sendPayment(request)
 }
 

@@ -1,5 +1,6 @@
 package com.davidsalas.blockchain
 
+import io.swagger.annotations.ApiOperation
 import org.springframework.stereotype.Service
 import org.springframework.web.bind.annotation.*
 import org.stellar.sdk.AssetTypeCreditAlphaNum12
@@ -43,12 +44,15 @@ class AssetService(val server: Server, val accountService: AccountService, val p
 class AssetController(val assetService: AssetService, val authorizationService: AuthorizationService) {
 
     @GetMapping("/{email}")
+    @ApiOperation(value = "Get assets that belongs to the email")
     fun getAssetByEmail(@PathVariable("email") email: String) = assetService.getAssetByEmail(email)
 
     @PostMapping("/create")
+    @ApiOperation(value = "Create an Asset and associate with an account")
     fun create(@RequestBody request: CreateAssetRequest) = assetService.create(request)
 
     @PostMapping("/authorize-external")
+    @ApiOperation(value = "Authorize external Stellar user to use an Asset created by an account of this application")
     fun authorize(@RequestBody request: AuthorizeAssetRequest): Response {
         val asset = AssetTypeCreditAlphaNum12.createNonNativeAsset(request.assetData.assetCode, request.assetData.issuerAccountId)
         return authorizationService.authorize(request.secretSeed, asset, request.limit)

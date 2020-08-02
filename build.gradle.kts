@@ -34,6 +34,8 @@ dependencies {
 	implementation("com.github.stellar:java-stellar-sdk:0.18.0")
 	implementation("com.h2database:h2:1.4.200")
 	implementation("org.springframework.retry:spring-retry:1.3.0")
+	implementation("io.springfox:springfox-swagger2:2.9.2")
+	implementation("io.springfox:springfox-swagger-ui:2.9.2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
