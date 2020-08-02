@@ -1,0 +1,310 @@
+{
+	"info": {
+		"_postman_id": "0b942c5d-abcd-4193-9185-baed15a9f59d",
+		"name": "Stellar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "payment",
+			"item": [
+				{
+					"name": "Send payment Lumen internal user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"account_type\": \"INTERNAL\",\n    \"email_source\": \"distributionaccount@mail.com\",\n    \"email_destination\": \"noissuingaccount@mail.com\",\n    \"amount\": \"30\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/payment/send-asset",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"payment",
+								"send-asset"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send payment Lumen external user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"account_type\": \"EXTERNAL\",\n    \"email_source\": \"distributionaccount@mail.com\",\n    \"destination_account_id\": \"GBW2Q2SCI266QGFGJLRI6K5IGF5SIT7LLWT3VAW2ETTPLXCUEBZFDCDQ\",\n    \"amount\": \"30\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/payment/send-asset",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"payment",
+								"send-asset"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send payment custom asset internal user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"account_type\": \"INTERNAL\",\n    \"email_source\": \"distributionaccount@mail.com\",\n    \"email_destination\": \"noissuingaccount@mail.com\",\n    \"amount\": \"5\",\n    \"asset_data\" : {\n        \"issuer_account_id\": \"GDNI42SYQOKWJZPITIFZ6RWVLBWUOMHFVH4OS42MSJASAYU6EFY4GB6F\", \n        \"asset_code\": \"patacoin\"\n    }\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/payment/send-asset",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"payment",
+								"send-asset"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send payment custom asset external user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"account_type\": \"EXTERNAL\",\n    \"email_source\": \"distributionaccount@mail.com\",\n    \"destination_account_id\": \"GBW2Q2SCI266QGFGJLRI6K5IGF5SIT7LLWT3VAW2ETTPLXCUEBZFDCDQ\",\n    \"amount\": \"10\",\n    \"asset_data\" : {\n        \"issuer_account_id\": \"GAADPIYB2EILMWQNWNXROWTWHHBLL35G64FBQKIEAGUL4TBVAFVCCGOK\", \n        \"asset_code\": \"coinCode\"\n    }\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/payment/send-asset",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"payment",
+								"send-asset"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "account",
+			"item": [
+				{
+					"name": "Create issuing account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"issuingaccount@mail.com\",\n    \"distributor_email\": \"distributionaccount@mail.com\",\n    \"issuing_account\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/account/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"account",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create no issuing account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"noissuingaccount@mail.com\",\n    \"issuing_account\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/account/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"account",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get account balance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/account/noissuingaccount@mail.com/balance",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"account",
+								"noissuingaccount@mail.com",
+								"balance"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "asset",
+			"item": [
+				{
+					"name": "Create asset",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"asset_code\": \"patacoin\",\n    \"email\": \"issuingaccount@mail.com\",\n    \"limit\": \"1000000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/asset/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"asset",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authorize asset",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"secret_seed\": \"SC6RGROIP6WI7W2QCYF4QZ65J4OIKIU4KXV5S3RDNIMLCATMYESAO5OC\",\n    \"asset_data\": {\n        \"issuer_account_id\": \"GAADPIYB2EILMWQNWNXROWTWHHBLL35G64FBQKIEAGUL4TBVAFVCCGOK\",\n        \"asset_code\": \"coinCode\"\n    },\n    \"limit\": \"30000\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/asset/authorize-external",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"asset",
+								"authorize-external"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get assets from email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/asset/issuingaccount@mail.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"asset",
+								"issuingaccount@mail.com"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b06e2a2d-1ccb-4c47-8b83-4423b72e6793",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "19fef31d-34de-44ed-af3a-645d0b2c20aa",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "942923be-b7e6-4123-af25-32f31cd07547",
+			"key": "base_url",
+			"value": "http://localhost:9090"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
