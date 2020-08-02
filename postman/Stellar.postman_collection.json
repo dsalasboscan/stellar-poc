@@ -96,7 +96,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"account_type\": \"EXTERNAL\",\n    \"email_source\": \"distributionaccount@mail.com\",\n    \"destination_account_id\": \"GBW2Q2SCI266QGFGJLRI6K5IGF5SIT7LLWT3VAW2ETTPLXCUEBZFDCDQ\",\n    \"amount\": \"10\",\n    \"asset_data\" : {\n        \"issuer_account_id\": \"GAADPIYB2EILMWQNWNXROWTWHHBLL35G64FBQKIEAGUL4TBVAFVCCGOK\", \n        \"asset_code\": \"coinCode\"\n    }\n    \n}",
+							"raw": "{\n    \"account_type\": \"EXTERNAL\",\n    \"email_source\": \"distributionaccount@mail.com\",\n    \"destination_account_id\": \"GCGBV46LOGI34ROYC2PQQNMV22Y6AFVLNO6COR6ILQHHP2DVKD2RKAD2\",\n    \"amount\": \"10\",\n    \"asset_data\" : {\n        \"issuer_account_id\": \"GDJZ7EIT4ZVTIWKSVSL67VELPUZASNXKQN3ANTK4DCXCAMA3E6OO4U6P\", \n        \"asset_code\": \"patacoin\"\n    }\n    \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -235,7 +235,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"secret_seed\": \"SC6RGROIP6WI7W2QCYF4QZ65J4OIKIU4KXV5S3RDNIMLCATMYESAO5OC\",\n    \"asset_data\": {\n        \"issuer_account_id\": \"GAADPIYB2EILMWQNWNXROWTWHHBLL35G64FBQKIEAGUL4TBVAFVCCGOK\",\n        \"asset_code\": \"coinCode\"\n    },\n    \"limit\": \"30000\" \n}",
+							"raw": "{\n    \"secret_seed\": \"SA7Z2TJMZVRJNWXDZZILFTJBBGLXTNE3XGMMIZVYYEFDWXFT754BTPNY\",\n    \"asset_data\": {\n        \"issuer_account_id\": \"GDJZ7EIT4ZVTIWKSVSL67VELPUZASNXKQN3ANTK4DCXCAMA3E6OO4U6P\",\n        \"asset_code\": \"patacoin\"\n    },\n    \"limit\": \"30000\" \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -301,7 +301,7 @@
 	],
 	"variable": [
 		{
-			"id": "942923be-b7e6-4123-af25-32f31cd07547",
+			"id": "73d11b64-7603-4b85-8e2a-649771f9951d",
 			"key": "base_url",
 			"value": "http://localhost:9090"
 		}
