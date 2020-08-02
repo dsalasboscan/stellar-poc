@@ -39,18 +39,11 @@ class ErrorHandlerService {
 @RestControllerAdvice
 class ControllerAdvice : ResponseEntityExceptionHandler() {
 
-    @ExceptionHandler(HorizonException::class)
-    fun handleHorizonException(e: HorizonException): ErrorDto {
-        return ErrorDto(e.code, e.message)
-    }
-
     @ExceptionHandler(Exception::class)
     fun handleBaseException(e: Exception): ErrorDto {
-        return when(e) {
+        return when (e) {
             is DataAccessException -> ErrorDto(HttpStatus.INTERNAL_SERVER_ERROR.name, e.mostSpecificCause.message ?: DEFAULT_MESSAGE)
-            is AssetException -> ErrorDto("asset_error", e.message)
-            is AccountException -> ErrorDto("account_error", e.message)
-            is PaymentException -> ErrorDto("payment_error", e.message)
+            is BaseException -> ErrorDto(e.code, e.message)
             else -> ErrorDto(DEFAULT_CODE, e.message ?: DEFAULT_MESSAGE)
         }
     }
@@ -58,7 +51,8 @@ class ControllerAdvice : ResponseEntityExceptionHandler() {
 
 data class ErrorDto(val code: String, val message: String)
 
-class HorizonException(val code: String = "", override val message: String = "") : RuntimeException()
-class AssetException(override val message: String): RuntimeException()
-class AccountException(override val message: String): RuntimeException()
-class PaymentException(override val message: String): RuntimeException()
+open class BaseException(val code: String, override val message: String) : RuntimeException()
+class HorizonException(code: String = "horizon_api_error", message: String = "") : BaseException(code, message)
+class AssetException(code: String = "asset_error", message: String) : BaseException(code, message)
+class AccountException(code: String = "account_error", message: String) : BaseException(code, message)
+class PaymentException(code: String = "payment_error", message: String) : BaseException(code, message)

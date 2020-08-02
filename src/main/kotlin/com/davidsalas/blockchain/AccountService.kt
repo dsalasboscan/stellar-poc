@@ -19,11 +19,11 @@ import javax.persistence.*
 class AccountService(val server: Server, val accountRepository: AccountRepository) {
 
     fun findByEmail(email: String): Account = accountRepository.findByEmail(email)
-            .orElseThrow { throw AccountException("Account with email: $email don't exist") }
+            .orElseThrow { throw AccountException(message = "Account with email: $email don't exist") }
 
     fun create(request: CreateAccountRequest): ResponseEntity<CreateAccountResponse> {
         if (request.issuingAccount && request.distributorEmail == null) {
-            throw HorizonException("no_distributor_email", "Issuing accounts MUST have a distributor account with an email")
+            throw AccountException("no_distributor_email", "Issuing accounts MUST have a distributor account with an email")
         }
 
         val accountKeyPair = KeyPair.random()

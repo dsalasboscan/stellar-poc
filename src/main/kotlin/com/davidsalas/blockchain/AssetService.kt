@@ -14,7 +14,7 @@ class AssetService(val server: Server, val accountService: AccountService, val p
     fun getAssetByEmail(@PathVariable("email") email: String): ArrayList<AssetResponse>? {
         val account = accountService.findByEmail(email)
 
-        if (!account.issuingAccount) throw AssetException("There is not any asset associated with: $email")
+        if (!account.issuingAccount) throw AssetException(message = "There is not any asset associated with: $email")
         return server.assets().assetIssuer(account.accountId).execute().records
     }
 
@@ -25,7 +25,7 @@ class AssetService(val server: Server, val accountService: AccountService, val p
             val asset = AssetTypeCreditAlphaNum12(request.assetCode, sourceAccount.accountId)
 
             if (sourceAccount.distributionAccount == null) {
-                throw HorizonException(
+                throw AccountException(
                         "no_existent_distribution_account",
                         "To issue an Asset you need another account to send the original transaction, that account will act as distributor"
                 )
@@ -34,7 +34,7 @@ class AssetService(val server: Server, val accountService: AccountService, val p
             return paymentService.sendAssetCreationPayment(sourceAccount, asset, request.limit)
         }
 
-        throw HorizonException("not_issuing_account", "the account must be a issuing account")
+        throw AccountException("not_issuing_account", "the account must be a issuing account")
     }
 }
 
@@ -43,9 +43,7 @@ class AssetService(val server: Server, val accountService: AccountService, val p
 class AssetController(val assetService: AssetService, val authorizationService: AuthorizationService) {
 
     @GetMapping("/{email}")
-    fun getAssetByEmail(@PathVariable("email") email: String): ArrayList<AssetResponse>? {
-        return assetService.getAssetByEmail(email)
-    }
+    fun getAssetByEmail(@PathVariable("email") email: String) = assetService.getAssetByEmail(email)
 
     @PostMapping("/create")
     fun create(@RequestBody request: CreateAssetRequest) = assetService.create(request)

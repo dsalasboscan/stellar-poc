@@ -45,7 +45,7 @@ class PaymentService(
     private fun sendInternalUser(sourceAccount: Account, emailDestination: String?, asset: Asset, amount: String): Response {
         val destinationAccount = if (emailDestination != null) {
             accountService.findByEmail(emailDestination)
-        } else throw AccountException("Destination internal user with email: $emailDestination don't exist}")
+        } else throw AccountException(message = "Destination internal user with email: $emailDestination don't exist}")
 
         val paymentTransaction = PaymentOperationData(sourceAccount.secretSeed, destinationAccount.accountId, asset, amount)
 
@@ -58,7 +58,7 @@ class PaymentService(
     }
 
     private fun sendExternalUser(sourceAccount: Account, destinationAccountId: String?, asset: Asset, amount: String): Response {
-        if (destinationAccountId == null) throw PaymentException("Destination account id must not be null for external users")
+        if (destinationAccountId == null) throw PaymentException(message = "Destination account id must not be null for external users")
 
         val paymentTransaction = PaymentOperationData(sourceAccount.secretSeed, destinationAccountId, asset, amount)
 
