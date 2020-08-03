@@ -69,11 +69,9 @@ class BeansConfig {
                 .title("POC Integración Stellar Network (Blockchain)")
                 .description("<b> Entornos </b> \n" +
                         "- Local ROOT: http://localhost:9090 (configurable en application.yml) \n" +
-                        "- Local H2-CONSOLE: http://localhost:9090/h2-console \n" +
                         "- Local SWAGGER-UI: http://localhost:9090/swagger-ui.html \n" +
                         "\n" +
                         "- Heroku ROOT: https://patacoin-poc.herokuapp.com \n" +
-                        "- Heroku H2-CONSOLE: https://patacoin-poc.herokuapp.com//h2-console \n" +
                         "- Heroku SWAGGER-UI: https://patacoin-poc.herokuapp.com//swagger-ui.html \n")
 
                 .license("")
